@@ -13,6 +13,11 @@ Deno.test("Finds the maximum amount of space between a city and space station wi
   assertEquals(result, 6)
 })
 
+Deno.test("Finds the maximum amount of space between a big array", function(): void {
+  result = stationFinder(100, [93, 41, 91, 61, 30, 6, 25, 90, 97])
+  assertEquals(result, 14)
+})
+
 Deno.test("Returns 0 when there is a station at each city", function(): void {
   result = stationFinder(6, [0,1,2,3,4,5])
   assertEquals(result, 0)

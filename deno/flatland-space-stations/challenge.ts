@@ -1,38 +1,28 @@
 export function stationFinder(n: number, c: number[]): number {
   const length = n
-  let distance = 0
-  let count = 0
+  let max = 0
 
   if (length == c.length) {
     return 0
   }
 
-  const path = new Array(length)
+  const stations = c.sort((a, b) => a - b)
 
-  for (var i = 0, len = path.length; i < len; i++) {
-    if (c.lastIndexOf(i) != -1) {
-      path[i] = 1
-    } else {
-      path[i] = 0
+  for (var i = 0, len = stations.length - 1; i < len; i++) {
+    const cities = stations[i + 1] - stations[i] - 1
+    const distance = (Math.ceil(cities / 2.0))
+    if (distance > max) {
+      max = distance
     }
   }
 
-  for (var i = 0, len = path.length; i < len; i++) {
-    if (path[i] == 1 && i >= 0) {
-      count ++
-    }
-    if (count >= 1 && path[i] == 0) {
-      count ++
-    }
-    if (count > 0 && path[i] == 1) {
-      const traversed = Math.round(count / 2) - 1
-      distance = traversed > distance ? traversed : distance
-    }
-    if (count > 0 && path[i] == path[-1]) {
-      const traversed = Math.round(count / 2) - 1
-      distance = traversed > distance ? traversed : distance
-    }
+  if (stations[0] - 0 > max) {
+    max = stations[0] - 0
   }
 
-  return distance
+  if (n - 1 - stations[c.length - 1] > max) {
+    max = n - 1 - stations[c.length - 1]
+  }
+
+  return max
 }
