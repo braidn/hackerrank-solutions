@@ -23,7 +23,7 @@ Deno.test({
 });
 
 Deno.test({
-  name: "Removes the last item from the pack when adding > 3 items",
+  name: "Removes the first item from the pack when adding > 3 items",
   fn(): void {
     resetPack(pack);
     fillPack();
