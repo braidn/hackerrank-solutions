@@ -7,12 +7,16 @@ export function minimumSwaps(arr) {
     const targetItem = i + 1;
 
     if (currentItem !== targetItem) {
-      const indexTarget = arr.indexOf(targetItem);
-
+      let indexTarget;
+      for (let inner = 0; inner < arr.length; inner++) {
+        if (arr[inner] == targetItem) {
+          indexTarget = inner
+          break;
+        }
+      }
       arr[indexTarget] = currentItem;
       arr[i] = targetItem;
       swaps++;
-      console.log(arr)
     }
   }
 
